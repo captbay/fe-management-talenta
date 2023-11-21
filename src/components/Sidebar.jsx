@@ -51,6 +51,7 @@ export default function Sidebar() {
             icon={<LayoutDashboard />}
             text={"Dashboard"}
             href={"/dashboard"}
+            toggleSidebar={toggleSidebar}
           />
           {role === "Dosen" ? (
             <SidebarItem
@@ -58,6 +59,7 @@ export default function Sidebar() {
               icon={<Users />}
               text={"Dosen"}
               href={"/dosen"}
+              toggleSidebar={toggleSidebar}
             />
           ) : role === "Pegawai" ? (
             <SidebarItem
@@ -65,6 +67,7 @@ export default function Sidebar() {
               icon={<Users />}
               text={"Pegawai"}
               href={"/pegawai"}
+              toggleSidebar={toggleSidebar}
             />
           ) : (
             <>
@@ -73,19 +76,21 @@ export default function Sidebar() {
                 icon={<Users />}
                 text={"Dosen"}
                 href={"/dosen"}
+                toggleSidebar={toggleSidebar}
               />
               <SidebarItem
                 active={pathname === "/pegawai"}
                 icon={<Users />}
                 text={"Pegawai"}
                 href={"/pegawai"}
+                toggleSidebar={toggleSidebar}
               />
             </>
           )}
         </ul>
         <div>
           <div className="border-t flex p-3">
-            <Link href={"/profile"}>
+            <Link href={"/profile"} onClick={toggleSidebar}>
               <Image
                 src="/Logo_Telkom_University_potrait.png"
                 alt="profile pic"
@@ -100,7 +105,7 @@ export default function Sidebar() {
               overflow-hidden transition-all w-52 ml-3
           `}
             >
-              <Link href={"/profile"}>
+              <Link href={"/profile"} onClick={toggleSidebar}>
                 <div className="leading-4">
                   <h4 className="font-semibold text-black overflow-x-clip">
                     {name}
@@ -123,9 +128,10 @@ export default function Sidebar() {
   );
 }
 
-const SidebarItem = ({ icon, text, active, href }) => {
+const SidebarItem = ({ icon, text, active, href, toggleSidebar }) => {
   return (
     <Link
+      onClick={toggleSidebar}
       href={href}
       className={` 
         relative flex items-center py-2 px-3 my-1
