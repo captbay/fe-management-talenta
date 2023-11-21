@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import { getDosenById } from "@/api/api";
 import useGetCookie from "@/hooks/useGetCookie";
 import Image from "next/image";
+import { Printer } from "lucide-react";
 
 const Page = ({ params: { id } }) => {
   const [loading, setLoading] = useState(true);
@@ -39,9 +40,10 @@ const Page = ({ params: { id } }) => {
               <h1 className="text-2xl font-bold">Data Dosen</h1>
               {/* print button */}
               <button
-                className="bg-blue-500 px-4 py-2 text-xs w-max text-white font-semibold rounded"
+                className="bg-red-500 px-4 py-2 text-xs w-max text-white font-semibold rounded"
                 onClick={() => window.print()}
               >
+                <Printer />
                 Print
               </button>
             </div>
