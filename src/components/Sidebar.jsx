@@ -1,6 +1,6 @@
 "use client";
 
-import { Users, LayoutDashboard, LogOut } from "lucide-react";
+import { Users, LayoutDashboard, LogOut, Menu } from "lucide-react";
 import Image from "next/image";
 import ModalLogout from "./ModalLogout";
 import { useState } from "react";
@@ -10,15 +10,30 @@ import useGetCookie from "@/hooks/useGetCookie";
 
 export default function Sidebar() {
   const [isShowModal, setIsShowModal] = useState(false);
+  const [isShowSidebar, setIsShowSidebar] = useState(false);
+
   const pathname = usePathname();
   const { name, role } = useGetCookie();
 
   const onOpenModal = () => setIsShowModal(true);
   const onCloseModal = () => setIsShowModal(false);
 
+  const toggleSidebar = () => {
+    setIsShowSidebar(!isShowSidebar); // Toggle sidebar visibility
+  };
+
   return (
-    <aside className="h-screen w-60 sticky top-0">
-      <nav className="h-full flex flex-col dark:bg-white border-r shadow-sm">
+    <aside className="h-screen md:w-60 md:block sticky top-0 border-r">
+      <div className="md:hidden">
+        <button onClick={toggleSidebar} className="p-3">
+          <Menu size={24} color="red" /> {/* Burger icon for menu */}
+        </button>
+      </div>
+      <nav
+        className={`md:h-full h-[95%] flex flex-col dark:bg-white shadow-sm ${
+          isShowSidebar ? "block" : "hidden"
+        } md:flex `}
+      >
         <div className="p-4 self-center">
           <Link href="/">
             <Image
@@ -44,15 +59,29 @@ export default function Sidebar() {
               text={"Dosen"}
               href={"/dosen"}
             />
-          ) : null}
-          {role === "Pegawai" ? (
+          ) : role === "Pegawai" ? (
             <SidebarItem
               active={pathname === "/pegawai"}
               icon={<Users />}
               text={"Pegawai"}
               href={"/pegawai"}
             />
-          ) : null}
+          ) : (
+            <>
+              <SidebarItem
+                active={pathname === "/dosen"}
+                icon={<Users />}
+                text={"Dosen"}
+                href={"/dosen"}
+              />
+              <SidebarItem
+                active={pathname === "/pegawai"}
+                icon={<Users />}
+                text={"Pegawai"}
+                href={"/pegawai"}
+              />
+            </>
+          )}
         </ul>
         <div>
           <div className="border-t flex p-3">
@@ -101,16 +130,16 @@ const SidebarItem = ({ icon, text, active, href = "/" }) => {
       className={` 
         relative flex items-center py-2 px-3 my-1
         font-medium rounded-md cursor-pointer
-        transition-colors group 
+        group 
         ${
           active
-            ? "bg-red-500 text-white"
+            ? "bg-red-600 text-white"
             : "hover:bg-red-400 text-gray-800 hover:text-white"
         }
     `}
     >
       {icon}
-      <span className={`overflow-hidden transition-all w-52 ml-3`}>{text}</span>
+      <span className={`overflow-hidden w-52 ml-3`}>{text}</span>
     </Link>
   );
 };
