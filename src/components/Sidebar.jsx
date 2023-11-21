@@ -123,7 +123,7 @@ export default function Sidebar() {
   );
 }
 
-const SidebarItem = ({ icon, text, active, href = "/" }) => {
+const SidebarItem = ({ icon, text, active, href }) => {
   return (
     <Link
       href={href}
