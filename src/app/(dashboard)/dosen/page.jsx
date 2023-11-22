@@ -1,7 +1,7 @@
 "use client";
 import { getDosen } from "@/api/api";
 import useGetCookie from "@/hooks/useGetCookie";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 
 const Page = () => {
@@ -82,7 +82,7 @@ const Page = () => {
                   No
                 </th>
                 <th scope="col" className="px-6 py-3">
-                  Dosen Name
+                  Nama
                 </th>
                 <th scope="col" className="px-6 py-3">
                   Kode Dosen

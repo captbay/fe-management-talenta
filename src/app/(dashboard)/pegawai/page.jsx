@@ -82,16 +82,16 @@ const Page = () => {
                   No
                 </th>
                 <th scope="col" className="px-6 py-3">
-                  Pegawai Name
+                  Nama
                 </th>
                 <th scope="col" className="px-6 py-3">
-                  Kode Pegawai
+                  NIP
                 </th>
                 <th scope="col" className="px-6 py-3">
-                  JFA
+                  Jabatan Fungsional
                 </th>
                 <th scope="col" className="px-6 py-3">
-                  Prodi
+                  TMT Jabatan Fungsional
                 </th>
                 <th scope="col" className="px-6 py-3">
                   Pendidikan Terakhir

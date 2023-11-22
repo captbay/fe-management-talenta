@@ -64,3 +64,14 @@ export const getPegawaiById = (token, id) => {
     },
   });
 };
+
+// get graph
+
+// graph for prodi
+export const getProdi = (token) => {
+  return axios.get("/graph/count-prodi", {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+};
