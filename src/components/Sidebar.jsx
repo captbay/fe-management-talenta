@@ -9,6 +9,8 @@ import {
   PencilRuler,
   Briefcase,
   BarChart,
+  ArrowUpIcon,
+  ArrowDownIcon,
 } from "lucide-react";
 import Image from "next/image";
 import ModalLogout from "./ModalLogout";
@@ -63,7 +65,17 @@ export default function Sidebar() {
             toggleSidebar={toggleSidebar}
           />
           {role === "Dosen" ? (
-            <>
+            <AccordionSidebarItem
+              active={
+                pathname === "/dosen" ||
+                pathname === "/prodidosen" ||
+                pathname === "/kelompokkeahliandosen"
+              }
+              icon={<Users />}
+              text={"Dosen"}
+              toggleSidebar={toggleSidebar}
+            >
+              {/* Nested content within the accordion */}
               <SidebarItem
                 active={pathname === "/dosen"}
                 icon={<Users />}
@@ -85,9 +97,19 @@ export default function Sidebar() {
                 href={"/kelompokkeahliandosen"}
                 toggleSidebar={toggleSidebar}
               />
-            </>
+            </AccordionSidebarItem>
           ) : role === "Pegawai" ? (
-            <>
+            <AccordionSidebarItem
+              active={
+                pathname === "/pegawai" ||
+                pathname === "/jabatanpegawai" ||
+                pathname === "/statuspegawai"
+              }
+              icon={<Users />}
+              text={"Pegawai"}
+              toggleSidebar={toggleSidebar}
+            >
+              {/* Nested content within the accordion */}
               <SidebarItem
                 active={pathname === "/pegawai"}
                 icon={<Users />}
@@ -109,51 +131,75 @@ export default function Sidebar() {
                 href={"/statuspegawai"}
                 toggleSidebar={toggleSidebar}
               />
-            </>
+            </AccordionSidebarItem>
           ) : (
             <>
-              <SidebarItem
-                active={pathname === "/dosen"}
+              <AccordionSidebarItem
+                active={
+                  pathname === "/dosen" ||
+                  pathname === "/prodidosen" ||
+                  pathname === "/kelompokkeahliandosen"
+                }
                 icon={<Users />}
-                text={"Semua Dosen"}
-                href={"/dosen"}
+                text={"Dosen"}
                 toggleSidebar={toggleSidebar}
-              />
-              <SidebarItem
-                active={pathname === "/prodidosen"}
-                icon={<School2 />}
-                text={"Prodi Dosen"}
-                href={"/prodidosen"}
-                toggleSidebar={toggleSidebar}
-              />
-              <SidebarItem
-                active={pathname === "/kelompokkeahliandosen"}
-                icon={<PencilRuler />}
-                text={"Keahlian Dosen"}
-                href={"/kelompokkeahliandosen"}
-                toggleSidebar={toggleSidebar}
-              />
-              <SidebarItem
-                active={pathname === "/pegawai"}
+              >
+                {/* Nested content within the accordion */}
+                <SidebarItem
+                  active={pathname === "/dosen"}
+                  icon={<Users />}
+                  text={"Semua Dosen"}
+                  href={"/dosen"}
+                  toggleSidebar={toggleSidebar}
+                />
+                <SidebarItem
+                  active={pathname === "/prodidosen"}
+                  icon={<School2 />}
+                  text={"Prodi Dosen"}
+                  href={"/prodidosen"}
+                  toggleSidebar={toggleSidebar}
+                />
+                <SidebarItem
+                  active={pathname === "/kelompokkeahliandosen"}
+                  icon={<PencilRuler />}
+                  text={"Keahlian Dosen"}
+                  href={"/kelompokkeahliandosen"}
+                  toggleSidebar={toggleSidebar}
+                />
+              </AccordionSidebarItem>
+              <AccordionSidebarItem
+                active={
+                  pathname === "/pegawai" ||
+                  pathname === "/jabatanpegawai" ||
+                  pathname === "/statuspegawai"
+                }
                 icon={<Users />}
-                text={"Semua Pegawai"}
-                href={"/pegawai"}
+                text={"Pegawai"}
                 toggleSidebar={toggleSidebar}
-              />
-              <SidebarItem
-                active={pathname === "/jabatanpegawai"}
-                icon={<Briefcase />}
-                text={"Jabatan Pegawai"}
-                href={"/jabatanpegawai"}
-                toggleSidebar={toggleSidebar}
-              />
-              <SidebarItem
-                active={pathname === "/statuspegawai"}
-                icon={<BarChart />}
-                text={"Status Pegawai"}
-                href={"/statuspegawai"}
-                toggleSidebar={toggleSidebar}
-              />
+              >
+                {/* Nested content within the accordion */}
+                <SidebarItem
+                  active={pathname === "/pegawai"}
+                  icon={<Users />}
+                  text={"Semua Pegawai"}
+                  href={"/pegawai"}
+                  toggleSidebar={toggleSidebar}
+                />
+                <SidebarItem
+                  active={pathname === "/jabatanpegawai"}
+                  icon={<Briefcase />}
+                  text={"Jabatan Pegawai"}
+                  href={"/jabatanpegawai"}
+                  toggleSidebar={toggleSidebar}
+                />
+                <SidebarItem
+                  active={pathname === "/statuspegawai"}
+                  icon={<BarChart />}
+                  text={"Status Pegawai"}
+                  href={"/statuspegawai"}
+                  toggleSidebar={toggleSidebar}
+                />
+              </AccordionSidebarItem>
             </>
           )}
         </ul>
@@ -216,5 +262,41 @@ const SidebarItem = ({ icon, text, active, href, toggleSidebar }) => {
       {icon}
       <span className={`overflow-hidden w-52 ml-3`}>{text}</span>
     </Link>
+  );
+};
+
+// AccordionSidebarItem component
+const AccordionSidebarItem = ({
+  icon,
+  text,
+  active,
+  children,
+  toggleSidebar,
+}) => {
+  const [isOpen, setIsOpen] = useState(active);
+
+  const handleToggleAccordion = () => {
+    setIsOpen(!isOpen);
+  };
+
+  return (
+    <>
+      {/* Render the accordion header */}
+      <div
+        className={`relative flex items-center py-2 px-3 my-1 font-medium rounded-md cursor-pointer group ${
+          isOpen
+            ? "bg-red-800 text-white"
+            : "hover:bg-red-400 text-gray-800 hover:text-white"
+        }`}
+        onClick={handleToggleAccordion}
+      >
+        {icon}
+        <span className="overflow-hidden w-52 ml-3">{text}</span>
+        {/* Add an arrow icon to indicate the accordion state */}
+        {isOpen ? <ArrowUpIcon /> : <ArrowDownIcon />}
+      </div>
+      {/* Render the content when accordion is open */}
+      {isOpen && children}
+    </>
   );
 };
