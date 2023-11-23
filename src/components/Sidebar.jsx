@@ -1,6 +1,15 @@
 "use client";
 
-import { Users, LayoutDashboard, LogOut, Menu } from "lucide-react";
+import {
+  Users,
+  LayoutDashboard,
+  LogOut,
+  Menu,
+  School2,
+  PencilRuler,
+  Briefcase,
+  BarChart,
+} from "lucide-react";
 import Image from "next/image";
 import ModalLogout from "./ModalLogout";
 import { useState } from "react";
@@ -54,35 +63,95 @@ export default function Sidebar() {
             toggleSidebar={toggleSidebar}
           />
           {role === "Dosen" ? (
-            <SidebarItem
-              active={pathname === "/dosen"}
-              icon={<Users />}
-              text={"Dosen"}
-              href={"/dosen"}
-              toggleSidebar={toggleSidebar}
-            />
+            <>
+              <SidebarItem
+                active={pathname === "/dosen"}
+                icon={<Users />}
+                text={"Semua Dosen"}
+                href={"/dosen"}
+                toggleSidebar={toggleSidebar}
+              />
+              <SidebarItem
+                active={pathname === "/prodidosen"}
+                icon={<School2 />}
+                text={"Prodi Dosen"}
+                href={"/prodidosen"}
+                toggleSidebar={toggleSidebar}
+              />
+              <SidebarItem
+                active={pathname === "/kelompokkeahliandosen"}
+                icon={<PencilRuler />}
+                text={"Keahlian Dosen"}
+                href={"/kelompokkeahliandosen"}
+                toggleSidebar={toggleSidebar}
+              />
+            </>
           ) : role === "Pegawai" ? (
-            <SidebarItem
-              active={pathname === "/pegawai"}
-              icon={<Users />}
-              text={"Pegawai"}
-              href={"/pegawai"}
-              toggleSidebar={toggleSidebar}
-            />
+            <>
+              <SidebarItem
+                active={pathname === "/pegawai"}
+                icon={<Users />}
+                text={"Semua Pegawai"}
+                href={"/pegawai"}
+                toggleSidebar={toggleSidebar}
+              />
+              <SidebarItem
+                active={pathname === "/jabatanpegawai"}
+                icon={<Briefcase />}
+                text={"Jabatan Pegawai"}
+                href={"/jabatanpegawai"}
+                toggleSidebar={toggleSidebar}
+              />
+              <SidebarItem
+                active={pathname === "/statuspegawai"}
+                icon={<BarChart />}
+                text={"Status Pegawai"}
+                href={"/statuspegawai"}
+                toggleSidebar={toggleSidebar}
+              />
+            </>
           ) : (
             <>
               <SidebarItem
                 active={pathname === "/dosen"}
                 icon={<Users />}
-                text={"Dosen"}
+                text={"Semua Dosen"}
                 href={"/dosen"}
+                toggleSidebar={toggleSidebar}
+              />
+              <SidebarItem
+                active={pathname === "/prodidosen"}
+                icon={<School2 />}
+                text={"Prodi Dosen"}
+                href={"/prodidosen"}
+                toggleSidebar={toggleSidebar}
+              />
+              <SidebarItem
+                active={pathname === "/kelompokkeahliandosen"}
+                icon={<PencilRuler />}
+                text={"Keahlian Dosen"}
+                href={"/kelompokkeahliandosen"}
                 toggleSidebar={toggleSidebar}
               />
               <SidebarItem
                 active={pathname === "/pegawai"}
                 icon={<Users />}
-                text={"Pegawai"}
+                text={"Semua Pegawai"}
                 href={"/pegawai"}
+                toggleSidebar={toggleSidebar}
+              />
+              <SidebarItem
+                active={pathname === "/jabatanpegawai"}
+                icon={<Briefcase />}
+                text={"Jabatan Pegawai"}
+                href={"/jabatanpegawai"}
+                toggleSidebar={toggleSidebar}
+              />
+              <SidebarItem
+                active={pathname === "/statuspegawai"}
+                icon={<BarChart />}
+                text={"Status Pegawai"}
+                href={"/statuspegawai"}
                 toggleSidebar={toggleSidebar}
               />
             </>

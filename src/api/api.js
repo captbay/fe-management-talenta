@@ -75,3 +75,27 @@ export const getProdi = (token) => {
     },
   });
 };
+
+export const getKelompokKeahlian = (token) => {
+  return axios.get("/graph/count-kelompok-keahlian", {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+};
+
+export const getJabatan = (token) => {
+  return axios.get("/graph/count-jabatan-fungsional", {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+};
+
+export const getStatus = (token) => {
+  return axios.get("/graph/count-status", {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+};
