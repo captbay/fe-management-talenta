@@ -15,6 +15,7 @@ import {
 import { Bar, getElementAtEvent } from "react-chartjs-2";
 import Link from "next/link";
 import { getDosen } from "@/api/api";
+import { toast } from "react-toastify";
 
 ChartJS.register(
   CategoryScale,
@@ -74,6 +75,14 @@ const Page = () => {
         text: "Chart Jumlah Dosen per KelompokKeahlian",
       },
     },
+    events: ["mousemove", "mouseout", "click", "touchstart", "touchmove"],
+    onHover: function (event, chartElement) {
+      if (chartElement.length == 1) {
+        event.native.target.style.cursor = "pointer";
+      } else {
+        event.native.target.style.cursor = "default";
+      }
+    },
   };
 
   const dataKelompokKeahlian = {
@@ -83,6 +92,9 @@ const Page = () => {
         label: "Jumlah Dosen",
         data: dataKelompokKeahlianApi,
         backgroundColor: "rgba(220, 0, 0, 0.5)",
+        hoverBackgroundColor: "rgba(220, 0, 0, 0.8)",
+        hoverBorderRadius: 10,
+        hoverBorderWidth: 2,
       },
     ],
   };
@@ -101,6 +113,12 @@ const Page = () => {
           selectedKelompokKeahlian.toLowerCase()
       );
       setFilteredDosen(filtered); // Update the filteredDosen state
+
+      toast.success(
+        "Data " +
+          selectedKelompokKeahlian +
+          " berhasil ditampilkan, silahkan lihat di tabel"
+      );
     }
   };
 

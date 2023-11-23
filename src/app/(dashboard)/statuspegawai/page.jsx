@@ -15,6 +15,7 @@ import {
 import { Bar, getElementAtEvent } from "react-chartjs-2";
 import Link from "next/link";
 import { getPegawai } from "@/api/api";
+import { toast } from "react-toastify";
 
 ChartJS.register(
   CategoryScale,
@@ -74,6 +75,14 @@ const Page = () => {
         text: "Chart Jumlah Pegawai per Status",
       },
     },
+    events: ["mousemove", "mouseout", "click", "touchstart", "touchmove"],
+    onHover: function (event, chartElement) {
+      if (chartElement.length == 1) {
+        event.native.target.style.cursor = "pointer";
+      } else {
+        event.native.target.style.cursor = "default";
+      }
+    },
   };
 
   const dataStatus = {
@@ -83,6 +92,9 @@ const Page = () => {
         label: "Jumlah Pegawai",
         data: dataStatusApi,
         backgroundColor: "rgba(220, 0, 0, 0.5)",
+        hoverBackgroundColor: "rgba(220, 0, 0, 0.8)",
+        hoverBorderRadius: 10,
+        hoverBorderWidth: 2,
       },
     ],
   };
@@ -100,6 +112,12 @@ const Page = () => {
           pegawai.status?.toLowerCase() === selectedStatus.toLowerCase()
       );
       setFilteredPegawai(filtered); // Update the filteredPegawai state
+
+      toast.success(
+        "Data " +
+          selectedStatus +
+          " berhasil ditampilkan, silahkan lihat di tabel"
+      );
     }
   };
 

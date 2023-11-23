@@ -15,6 +15,7 @@ import {
 import { Bar, getElementAtEvent } from "react-chartjs-2";
 import Link from "next/link";
 import { getPegawai } from "@/api/api";
+import { toast } from "react-toastify";
 
 ChartJS.register(
   CategoryScale,
@@ -76,6 +77,14 @@ const Page = () => {
         text: "Chart Jumlah Pegawai per JabatanFungsional",
       },
     },
+    events: ["mousemove", "mouseout", "click", "touchstart", "touchmove"],
+    onHover: function (event, chartElement) {
+      if (chartElement.length == 1) {
+        event.native.target.style.cursor = "pointer";
+      } else {
+        event.native.target.style.cursor = "default";
+      }
+    },
   };
 
   const dataJabatanFungsional = {
@@ -85,6 +94,9 @@ const Page = () => {
         label: "Jumlah Pegawai",
         data: dataJabatanFungsionalApi,
         backgroundColor: "rgba(220, 0, 0, 0.5)",
+        hoverBackgroundColor: "rgba(220, 0, 0, 0.8)",
+        hoverBorderRadius: 10,
+        hoverBorderWidth: 2,
       },
     ],
   };
@@ -103,6 +115,12 @@ const Page = () => {
           selectedJabatanFungsional.toLowerCase()
       );
       setFilteredPegawai(filtered); // Update the filteredPegawai state
+
+      toast.success(
+        "Data " +
+          selectedJabatanFungsional +
+          " berhasil ditampilkan, silahkan lihat di tabel"
+      );
     }
   };
 
