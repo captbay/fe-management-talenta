@@ -110,7 +110,7 @@ const Page = () => {
 
   return (
     <section className="flex flex-col">
-      <div className="h-[60vh] w-[60vw] relative md:w-full md:min-h-[70vh]">
+      <div className="h-[60vh] w-[60vw] md:w-full md:min-h-[70vh]">
         {labelKelompokKeahlianApi.length > 0 &&
           dataKelompokKeahlianApi.length > 0 && (
             <Bar
