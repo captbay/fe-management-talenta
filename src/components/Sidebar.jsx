@@ -86,14 +86,14 @@ export default function Sidebar() {
               <SidebarItem
                 active={pathname === "/prodidosen"}
                 icon={<School2 />}
-                text={"Prodi Dosen"}
+                text={"Homebase Dosen"}
                 href={"/prodidosen"}
                 toggleSidebar={toggleSidebar}
               />
               <SidebarItem
                 active={pathname === "/kelompokkeahliandosen"}
                 icon={<PencilRuler />}
-                text={"Keahlian Dosen"}
+                text={"Kelompok Keahlian"}
                 href={"/kelompokkeahliandosen"}
                 toggleSidebar={toggleSidebar}
               />
@@ -155,14 +155,14 @@ export default function Sidebar() {
                 <SidebarItem
                   active={pathname === "/prodidosen"}
                   icon={<School2 />}
-                  text={"Prodi Dosen"}
+                  text={"Homebase Dosen"}
                   href={"/prodidosen"}
                   toggleSidebar={toggleSidebar}
                 />
                 <SidebarItem
                   active={pathname === "/kelompokkeahliandosen"}
                   icon={<PencilRuler />}
-                  text={"Keahlian Dosen"}
+                  text={"Kelompok Keahlian"}
                   href={"/kelompokkeahliandosen"}
                   toggleSidebar={toggleSidebar}
                 />
