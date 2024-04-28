@@ -20,7 +20,8 @@ export function middleware(req) {
 
   if (!isPublicRoutes.includes(pathname) && !token) {
     const loginUrl = new URL("/", req.nextUrl).href;
-    return NextResponse.redirect(loginUrl);
+    const dashboardUrl = new URL("/dashboard", req.nextUrl).href;
+    return NextResponse.redirect(dashboardUrl);
   }
 }
 
